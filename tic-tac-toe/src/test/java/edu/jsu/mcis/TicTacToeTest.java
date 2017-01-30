@@ -2,7 +2,7 @@ package edu.jsu.mcis;
 
 import org.junit.*;
 import static org.junit.Assert.*;
-import java.util.Scanner;
+//import java.util.Scanner;
 
 public class TicTacToeTest {
 	
@@ -41,37 +41,56 @@ public class TicTacToeTest {
 	@Test
 	public void testUnableToMarkOverExistingMark() {
 		model.setMark(0,0);
+		assertEquals(TicTacToeModel.Mark.X, model.getMark(0,0));
 		model.setMark(0,0);
-		Assert.That(game.IsAllowedMove(0,0), IsFalse);
+		assertEquals(TicTacToeModel.Mark.X, model.getMark(0,0));
+		model.setMark(1,1);
+		assertEquals(TicTacToeModel.Mark.O, model.getMark(1,1));
 	}
 	
 	@Test
 	public void testGameIsNotOverAfterTheFirstMark() {
-		Assert.That(game.IsOver(), Is.False);
+		TicTacToeModel.Result r = model.getResult();
+		model.setMark(0,0);
+		assertEquals(TicTacToeModel.Result.NADA, r);
+		//Assert.That(game.IsOver(), Is.False); 
 	}
 	
 	@Test
 	public void testGameIsWonByXHorizontallyAcrossTopRow() {
 		model.setMark(0,2);
+		assertEquals(TicTacToeModel.Result.NADA, model.getResult());
 		model.setMark(2,0);
+		assertEquals(TicTacToeModel.Result.NADA, model.getResult());
 		model.setMark(0,0);
+		assertEquals(TicTacToeModel.Result.NADA, model.getResult());
 		model.setMark(1,0);
+		assertEquals(TicTacToeModel.Result.NADA, model.getResult());
 		model.setMark(0,1);
-		TicTacToeModel.Mark m = model.getMark(0,2)(0,0)(0,1);
-		assertEquals(TicTacToeModel.Mark.X, m);
+		assertEquals(TicTacToeModel.Result.XWin, model.getResult());
+	
 	}
 	
 	@Test
 	public void testGameIsOverByTieIfAllLocationsAreFilled() {
-		model.setMark(0,0);
-		model.setMark(0,1);
+		model.setMark(0, 0);
+		assertEquals(TicTacToeModel.Result.NADA, model.getResult());
+		model.setMark(0, 1);
+		assertEquals(TicTacToeModel.Result.NADA, model.getResult());
 		model.setMark(1,1);
+		assertEquals(TicTacToeModel.Result.NADA, model.getResult());
 		model.setMark(0,2);
+		assertEquals(TicTacToeModel.Result.NADA, model.getResult());
 		model.setMark(1,2);
+		assertEquals(TicTacToeModel.Result.NADA, model.getResult());
 		model.setMark(1,0);
+		assertEquals(TicTacToeModel.Result.NADA, model.getResult());
 		model.setMark(2,0);
-		model.setMark(2,1);
+		assertEquals(TicTacToeModel.Result.NADA, model.getResult());
 		model.setMark(2,2);
-
+		assertEquals(TicTacToeModel.Result.NADA, model.getResult());
+		model.setMark(2,1);
+		assertEquals(TicTacToeModel.Result.CAT, model.getResult());
 	}	
+
 }

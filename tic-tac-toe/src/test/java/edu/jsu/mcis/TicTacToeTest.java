@@ -2,7 +2,6 @@ package edu.jsu.mcis;
 
 import org.junit.*;
 import static org.junit.Assert.*;
-//import java.util.Scanner;
 
 public class TicTacToeTest {
 	
@@ -53,7 +52,7 @@ public class TicTacToeTest {
 		TicTacToeModel.Result r = model.getResult();
 		model.setMark(0,0);
 		assertEquals(TicTacToeModel.Result.NADA, r);
-		//Assert.That(game.IsOver(), Is.False); 
+		 
 	}
 	
 	@Test

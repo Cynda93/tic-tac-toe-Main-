@@ -14,20 +14,33 @@ public class Main {
     }
     
     private static void controlModel(TicTacToeModel model) {
-
+		while running {
+			Point getMove = getUserMove();
+			running = model.setMark(getMove.x, getMove.y);
+			if !running {
+				System.out.println("Can not do (" + getMove.x + ","+ getMove.y +")")
+			}
+		}
     }
     
     private static void viewModel(TicTacToeModel model) {
-		System.out.println("Model " + "\n" + model + "\n");
+		System.out.println("Board " + "\n" + model + "\n");
 		
     }
 
 	public static void main(String[] args) {
         TicTacToeModel model = new TicTacToeModel();
-        viewModel(model);
-        controlModel(model);
-        String conclusion = "Both sides lose and CAT Wins!";
-        System.out.println(conclusion);
+        TicTacToeModel.Result outcome = TicTacToeModel.Result.NADA;
+		while(outcome == TicTacToeModel.Result.NADA){
+			String course = (model.TurnX())?;
+			viewModel(model);
+			controlModel(model);
+			result = model.getResult();
+		}
+		String over = "CAT Wins!";
+		if (result == TicTacToeModel.Result.XWin) over = "X Wins"
+		else if (outcome == TicTacToeModel.Result.OWin) over = "O Wins"
+		System.out.println(over);
 	}
 }
 
